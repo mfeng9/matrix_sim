@@ -21,7 +21,7 @@ Install for macOS or Linux using:
 
 <!-- `pybullet-planning$ git clone --recursive git@github.com:caelan/pybullet-planning.git` -->
 ```
-$ git clone --recurse-submodules https://github.com/caelan/pybullet-planning.git
+$ git clone --recurse-submodules git@github.com:mfeng9/Pybullet-Planning.git
 $ cd pybullet-planning
 pybullet-planning$ pip install -r requirements.txt
 ```
