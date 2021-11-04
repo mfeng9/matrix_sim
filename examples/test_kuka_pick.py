@@ -49,7 +49,15 @@ def main(display='execute'): # control | execute | step
     block = load_model(BLOCK_URDF, fixed_base=False)
     set_pose(block, Pose(Point(y=0.5, z=stable_z(block, floor))))
     set_default_camera(distance=2)
-    dump_world()
+
+    # import pybullet as p
+    # p.setCollisionFilterPair(robot, robot, 1, 2, 0)
+    # p.setCollisionFilterPair(robot, robot, 2, 3, 0)
+    # p.setCollisionFilterPair(robot, robot, 3, 4, 0)
+    # p.setCollisionFilterPair(robot, robot, 4, 5, 0)
+    # p.setCollisionFilterPair(robot, robot, 5, 6, 0)
+    # p.setCollisionFilterPair(robot, robot, 6, 7, 0)
+    # dump_world()
 
     saved_world = WorldSaver()
     command = plan(robot, block, fixed=[floor], teleport=False)

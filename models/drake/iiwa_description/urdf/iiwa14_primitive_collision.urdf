@@ -51,20 +51,20 @@
       <mass value="5"/>
       <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.06" iyz="0" izz="0.03"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_0.obj"/>
       </geometry>
       <material name="Grey"/>
-    </visual>
-    <collision>
+    </collision>
+    <!-- <visual>
       <origin rpy="0 0 0" xyz="-0.015 0 0.07"/>
       <geometry>
         <cylinder length="0.17" radius="0.139"/>
       </geometry>
       <material name="Grey"/>
-    </collision>
+    </visual> -->
     <self_collision_checking>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -88,20 +88,20 @@
       <mass value="5.76"/>
       <inertia ixx="0.033" ixy="0" ixz="0" iyy="0.0333" iyz="0" izz="0.0123"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_1.obj"/>
       </geometry>
       <material name="Grey"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="0 0 0" xyz="0 -0.014 0.14"/>
       <geometry>
         <cylinder length="0.29" radius="0.101"/>
       </geometry>
       <material name="Grey"/>
-    </collision>
+    </visual>
   </link>
   <!-- joint between link_1 and link_2 -->
   <joint name="iiwa_joint_2" type="revolute">
@@ -121,20 +121,20 @@
       <!--4 Original Drake URDF value-->
       <inertia ixx="0.0305" ixy="0" ixz="0" iyy="0.0304" iyz="0" izz="0.011"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_2.obj"/>
       </geometry>
       <material name="Orange"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0.056 0.035"/>
       <geometry>
         <cylinder length="0.29" radius="0.101"/>
       </geometry>
       <material name="Orange"/>
-    </collision>
+    </visual>
   </link>
   <!-- joint between link_2 and link_3 -->
   <joint name="iiwa_joint_3" type="revolute">
@@ -154,20 +154,20 @@
       <!--3 Original Drake URDF value-->
       <inertia ixx="0.025" ixy="0" ixz="0" iyy="0.0238" iyz="0" izz="0.0076"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_3.obj"/>
       </geometry>
       <material name="Grey"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="0 0 0" xyz="0 0.025 0.137"/>
       <geometry>
         <cylinder length="0.29" radius="0.092"/>
       </geometry>
       <material name="Grey"/>
-    </collision>
+    </visual>
   </link>
   <!-- joint between link_3 and link_4 -->
   <joint name="iiwa_joint_4" type="revolute">
@@ -187,20 +187,20 @@
       <!--2.7 Original Drake URDF value-->
       <inertia ixx="0.017" ixy="0" ixz="0" iyy="0.0164" iyz="0" izz="0.006"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_4.obj"/>
       </geometry>
       <material name="Orange"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0.056 0.025"/>
       <geometry>
         <cylinder length="0.25" radius="0.092"/>
       </geometry>
       <material name="Orange"/>
-    </collision>
+    </visual>
   </link>
   <!-- joint between link_4 and link_5 -->
   <joint name="iiwa_joint_5" type="revolute">
@@ -220,20 +220,20 @@
       <!--1.7 Original Drake URDF value-->
       <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.0087" iyz="0" izz="0.00449"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_5.obj"/>
       </geometry>
       <material name="Grey"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="-0.3 0 0" xyz="0 0.03 0.13"/>
       <geometry>
         <cylinder length="0.29" radius="0.07"/>
       </geometry>
       <material name="Grey"/>
-    </collision>
+    </visual>
   </link>
   <!-- joint between link_5 and link_6 -->
   <joint name="iiwa_joint_6" type="revolute">
@@ -253,14 +253,14 @@
       <!--1.8 Original Drake URDF value-->
       <inertia ixx="0.0049" ixy="0" ixz="0" iyy="0.0047" iyz="0" izz="0.0036"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_6.obj"/>
       </geometry>
       <material name="Orange"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <!-- Note that the mesh-based collision model is intentionally being
@@ -268,7 +268,7 @@
         <mesh filename="../meshes/collision/link_6.obj"/>
       </geometry>
       <material name="Orange"/>
-    </collision>
+    </visual>
   </link>
   <!-- joint between link_6 and link_7 -->
   <joint name="iiwa_joint_7" type="revolute">
@@ -288,14 +288,14 @@
       <!--0.3 Original Drake URDF value-->
       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
     </inertial>
-    <visual>
+    <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="../meshes/visual/link_7.obj"/>
       </geometry>
       <material name="Grey"/>
-    </visual>
-    <collision>
+    </collision>
+    <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <!-- Note that the mesh-based collision model is intentionally being
@@ -303,7 +303,7 @@
         <mesh filename="../meshes/collision/link_7.obj"/>
       </geometry>
       <material name="Grey"/>
-    </collision>
+    </visual>
   </link>
   <joint name="iiwa_joint_ee" type="fixed">
     <parent link="iiwa_link_7"/>

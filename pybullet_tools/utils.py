@@ -72,6 +72,7 @@ MODEL_DIRECTORY = os.path.abspath(os.path.join(os.path.dirname(__file__), os.par
 ROOMBA_URDF = 'models/turtlebot/roomba.urdf'
 TURTLEBOT_URDF = 'models/turtlebot/turtlebot_holonomic.urdf'
 DRAKE_IIWA_URDF = 'models/drake/iiwa_description/urdf/iiwa14_polytope_collision.urdf'
+# DRAKE_IIWA_URDF = 'models/drake/iiwa_description/urdf/iiwa14_primitive_collision.urdf'
 WSG_50_URDF = 'models/drake/wsg_50_description/urdf/wsg_50_mesh_visual.urdf' # wsg_50 | wsg_50_mesh_visual | wsg_50_mesh_collision
 #SCHUNK_URDF = 'models/drake/wsg_50_description/sdf/schunk_wsg_50.sdf'
 PANDA_HAND_URDF = "models/franka_description/robots/hand.urdf"
@@ -3425,6 +3426,7 @@ def body_collision(body1, body2, **kwargs):
     return len(get_closest_points(body1, body2, **kwargs)) != 0
 
 def pairwise_collision(body1, body2, **kwargs):
+    """in kuka example kwargs is empty by default"""
     if isinstance(body1, tuple) or isinstance(body2, tuple):
         body1, links1 = expand_links(body1)
         body2, links2 = expand_links(body2)

@@ -56,6 +56,15 @@
       </geometry>
       <material name="Grey"/>
     </visual>
+    
+    <!-- <collision>
+      <origin rpy="0 0 0" xyz="-0.015 0 0.07"/>
+      <geometry>
+        <cylinder length="0.17" radius="0.139"/>
+      </geometry>
+      <material name="Grey"/>
+    </collision> -->
+
     <self_collision_checking>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -86,6 +95,13 @@
       </geometry>
       <material name="Grey"/>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.014 0.14"/>
+      <geometry>
+        <cylinder length="0.29" radius="0.101"/>
+      </geometry>
+      <material name="Grey"/>
+    </collision>
   </link>
   <!-- joint between link_1 and link_2 -->
   <joint name="iiwa_joint_2" type="revolute">
@@ -112,6 +128,13 @@
       </geometry>
       <material name="Orange"/>
     </visual>
+    <collision>
+      <origin rpy="1.57079632679 0 0" xyz="0 0.056 0.035"/>
+      <geometry>
+        <cylinder length="0.29" radius="0.101"/>
+      </geometry>
+      <material name="Orange"/>
+    </collision>
   </link>
   <!-- joint between link_2 and link_3 -->
   <joint name="iiwa_joint_3" type="revolute">
@@ -138,6 +161,13 @@
       </geometry>
       <material name="Grey"/>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.025 0.137"/>
+      <geometry>
+        <cylinder length="0.29" radius="0.092"/>
+      </geometry>
+      <material name="Grey"/>
+    </collision>
   </link>
   <!-- joint between link_3 and link_4 -->
   <joint name="iiwa_joint_4" type="revolute">
@@ -164,6 +194,13 @@
       </geometry>
       <material name="Orange"/>
     </visual>
+    <collision>
+      <origin rpy="1.57079632679 0 0" xyz="0 0.056 0.025"/>
+      <geometry>
+        <cylinder length="0.25" radius="0.092"/>
+      </geometry>
+      <material name="Orange"/>
+    </collision>
   </link>
   <!-- joint between link_4 and link_5 -->
   <joint name="iiwa_joint_5" type="revolute">
@@ -190,6 +227,13 @@
       </geometry>
       <material name="Grey"/>
     </visual>
+    <!-- <collision>
+      <origin rpy="-0.3 0 0" xyz="0 0.03 0.13"/>
+      <geometry>
+        <cylinder length="0.29" radius="0.07"/>
+      </geometry>
+      <material name="Grey"/>
+    </collision> -->
   </link>
   <!-- joint between link_5 and link_6 -->
   <joint name="iiwa_joint_6" type="revolute">
