@@ -65,12 +65,12 @@
       <material name="Grey"/>
     </collision> -->
 
-    <self_collision_checking>
+    <!-- <self_collision_checking>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <capsule length="0.25" radius="0.15"/>
       </geometry>
-    </self_collision_checking>
+    </self_collision_checking> -->
   </link>
   <!-- joint between link_0 and link_1 -->
   <joint name="iiwa_joint_1" type="revolute">
@@ -227,13 +227,13 @@
       </geometry>
       <material name="Grey"/>
     </visual>
-    <!-- <collision>
+    <collision>
       <origin rpy="-0.3 0 0" xyz="0 0.03 0.13"/>
       <geometry>
         <cylinder length="0.29" radius="0.07"/>
       </geometry>
       <material name="Grey"/>
-    </collision> -->
+    </collision>
   </link>
   <!-- joint between link_5 and link_6 -->
   <joint name="iiwa_joint_6" type="revolute">

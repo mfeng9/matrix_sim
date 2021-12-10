@@ -130,15 +130,14 @@ def main(display='execute'): # control | execute | step
 
 
 
-    from IPython import embed
-    embed()
 
-    js, tmp_p, tmp_q = forward_kinematics(saved_world.body_savers[0], link=8)
-    js_p = p.calculateInverseKinematics(robot, 8, tmp_p, tmp_q)
-    js_p, tmp_pp, tmp_qq = forward_kinematics(saved_world.body_savers[0], jointpositions=js_p, link=8)
+
+    # js, tmp_p, tmp_q = forward_kinematics(saved_world.body_savers[0], link=8)
+    # js_p = p.calculateInverseKinematics(robot, 8, tmp_p, tmp_q)
+    # js_p, tmp_pp, tmp_qq = forward_kinematics(saved_world.body_savers[0], jointpositions=js_p, link=8)
     
-    print('pos error: {}'.format( np.linalg.norm(np.array(tmp_p) - np.array(tmp_pp)) ) )
-    print('ori error: {}'.format( np.linalg.norm(np.array(tmp_q) - np.array(tmp_qq)) ) )
+    # print('pos error: {}'.format( np.linalg.norm(np.array(tmp_p) - np.array(tmp_pp)) ) )
+    # print('ori error: {}'.format( np.linalg.norm(np.array(tmp_q) - np.array(tmp_qq)) ) )
     
     
     # get a set of joint states, for example, saved_world
@@ -150,36 +149,43 @@ def main(display='execute'): # control | execute | step
     # set_joint_positions(robot, joints=joints, values=joint_states)
 
     # saved_world.restore()
-    # saved_world.restore()
-    estimate_collision_risk(saved_world.body_savers[0], 
+    risk = estimate_collision_risk(saved_world.body_savers[0], 
                             # np.zeros(7,),
                             noise_scale=0.01,
                             num_samples=1000)
 
+    print('estimated risk = {}'.format(risk))
 
-    # pairwise_collision(stove, block)
+    from IPython import embed
+    embed()
+
+
+
+
+
+    # # pairwise_collision(stove, block)
     command = plan(robot, block, fixed=[floor, stove], teleport=False)
-    # import pdb
-    # pdb.set_trace()
-    if (command is None) or (display is None):
-        print('Unable to find a plan!')
-        return
+    # # import pdb
+    # # pdb.set_trace()
+    # if (command is None) or (display is None):
+    #     print('Unable to find a plan!')
+    #     return
 
-    saved_world.restore()
-    update_state()
-    wait_if_gui('{}?'.format(display))
-    if display == 'control':
-        enable_gravity()
-        command.control(real_time=False, dt=0)
-    elif display == 'execute':
-        command.refine(num_steps=10).execute(time_step=0.005)
-    elif display == 'step':
-        command.step()
-    else:
-        raise ValueError(display)
+    # saved_world.restore()
+    # update_state()
+    # wait_if_gui('{}?'.format(display))
+    # if display == 'control':
+    #     enable_gravity()
+    #     command.control(real_time=False, dt=0)
+    # elif display == 'execute':
+    #     command.refine(num_steps=10).execute(time_step=0.005)
+    # elif display == 'step':
+    #     command.step()
+    # else:
+    #     raise ValueError(display)
 
-    print('Quit?')
-    wait_if_gui()
+    # print('Quit?')
+    # wait_if_gui()
     disconnect()
 
 if __name__ == '__main__':

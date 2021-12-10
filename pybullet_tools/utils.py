@@ -3819,7 +3819,7 @@ def plan_joint_motion(body, joints, end_conf, obstacles=[], attachments=[],
                                     use_aabb=use_aabb, cache=cache)
 
     start_conf = get_joint_positions(body, joints)
-    if not check_initial_end(start_conf, end_conf, collision_fn):
+    if not check_initial_end(start_conf, end_conf, collision_fn, verbose=True):
         return None
 
     if algorithm is None:
@@ -4499,6 +4499,8 @@ def compute_joint_weights(robot, num=100):
 #####################################
 
 def inverse_kinematics_helper(robot, link, target_pose, null_space=None):
+    # import pdb
+    # pdb.set_trace()
     (target_point, target_quat) = target_pose
     assert target_point is not None
     if null_space is not None:
@@ -4527,7 +4529,7 @@ def is_quat_close(quat1, quat2, tolerance=1e-3*np.pi):
     # Also could compute the inner product
     return any(all_close(quat1, sign*np.array(quat2), atol=tolerance) for sign in [-1., +1])
 
-def is_pose_close(pose, target_pose, pos_tolerance=1e-3, ori_tolerance=1e-3*np.pi): # TODO: are_poses_close
+def is_pose_close(pose, target_pose, pos_tolerance=5e-2, ori_tolerance=1e-3*np.pi): # TODO: are_poses_close
     (point, quat) = pose
     (target_point, target_quat) = target_pose
     if (target_point is not None) and not is_point_close(point, target_point, tolerance=pos_tolerance):
@@ -4536,7 +4538,10 @@ def is_pose_close(pose, target_pose, pos_tolerance=1e-3, ori_tolerance=1e-3*np.p
         return False
     return True
 
-def inverse_kinematics(robot, link, target_pose, max_iterations=200, max_time=INF, custom_limits={}, **kwargs):
+def inverse_kinematics(robot, link, target_pose, max_iterations=200, max_time=INF, custom_limits={}, verbose=True, **kwargs):
+    """
+    by default, kwargs={}
+    """
     start_time = time.time()
     movable_joints = get_movable_joints(robot)
     for iteration in irange(max_iterations):
@@ -4548,13 +4553,22 @@ def inverse_kinematics(robot, link, target_pose, max_iterations=200, max_time=IN
         if kinematic_conf is None:
             return None
         set_joint_positions(robot, movable_joints, kinematic_conf)
+        # import pdb
+        # pdb.set_trace()
         if is_pose_close(get_link_pose(robot, link), target_pose, **kwargs):
+            if verbose:
+                print("Breaking bc pose not close")
             break
     else:
+        if verbose:
+            print("Return None bc not close")
         return None
     lower_limits, upper_limits = get_custom_limits(robot, movable_joints, custom_limits)
     if not all_between(lower_limits, kinematic_conf, upper_limits):
+        if verbose:
+            print("Returning None bc joint limits")
         return None
+    print('found IK solution')
     return kinematic_conf
 
 #####################################
