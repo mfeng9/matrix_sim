@@ -4,8 +4,8 @@ from __future__ import print_function
 from posixpath import join
 
 from pybullet_tools.kuka_primitives import BodyPose, BodyConf, Command, get_grasp_gen, \
-    get_ik_fn, get_free_motion_gen, get_holding_motion_gen
-from pybullet_tools.utils import WorldSaver, enable_gravity, connect, dump_world, pairwise_collisions, set_joint_positions, set_pose, \
+    get_ik_fn, get_free_motion_gen, get_holding_motion_gen, plan_joint_motion
+from pybullet_tools.utils import WorldSaver, enable_gravity, connect, dump_world, pairwise_collisions, plan_joint_motion, set_joint_positions, set_pose, \
     draw_global_system, draw_pose, set_camera_pose, Pose, Point, set_default_camera, stable_z, \
     BLOCK_URDF, STOVE_URDF, load_model, wait_if_gui, disconnect, \
     wait_if_gui, update_state, disable_real_time, HideOutput, set_joint_positions
@@ -63,6 +63,11 @@ while True:
         pass
 conf1, path2 = result1
 pose0.assign()
+
+
+obstacles = [block, floor]
+path = plan_joint_motion(robot, conf1.joints, conf1.configuration, obstacles=obstacles, self_collisions=False)
+
 result2 = free_motion_fn(conf0, conf1)
 
 from IPython import embed

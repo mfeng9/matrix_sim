@@ -61,6 +61,8 @@ def main(display='execute'): # control | execute | step
 
     saved_world = WorldSaver()
     command = plan(robot, block, fixed=[floor], teleport=False)
+    import pdb
+    pdb.set_trace()
     if (command is None) or (display is None):
         print('Unable to find a plan!')
         return

@@ -3819,6 +3819,8 @@ def plan_joint_motion(body, joints, end_conf, obstacles=[], attachments=[],
                                     use_aabb=use_aabb, cache=cache)
 
     start_conf = get_joint_positions(body, joints)
+    # import pdb
+    # pdb.set_trace()
     if not check_initial_end(start_conf, end_conf, collision_fn, verbose=True):
         return None
 
