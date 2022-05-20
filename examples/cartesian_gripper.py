@@ -17,7 +17,7 @@ import time
 import gym
 import pdb
 
-class CartesianGripper(object):
+class CartesianGripperEnv(object):
   """
   Implementation of CartesianGripper robot in PyBullet
   """
@@ -137,20 +137,33 @@ class CartesianGripper(object):
       ## TODO: write RGBD file?
       np.save(saveloc, np_img_arr)
 
-  def step(self, at:np.ndarray, stepsize=50, realtime=True):
-    # TODO: add suck action
+  def step(self, at:np.ndarray, stepsize=50, absolute=False, realtime=True):
     # get current joint state
     px, vx, fx, tx = p.getJointState(0, 0)
     py, vy, fy, ty = p.getJointState(0, 1)
     pz, vz, fz, tz = p.getJointState(0, 2)
-    p.setJointMotorControl2(0, 0, p.POSITION_CONTROL, targetPosition=px + at[0])
-    p.setJointMotorControl2(0, 1, p.POSITION_CONTROL, targetPosition=py + at[1])
-    p.setJointMotorControl2(0, 2, p.POSITION_CONTROL, targetPosition=pz + at[2])
+    if not absolute:
+      p.setJointMotorControl2(0, 0, p.POSITION_CONTROL, targetPosition=px + at[0])
+      p.setJointMotorControl2(0, 1, p.POSITION_CONTROL, targetPosition=py + at[1])
+      p.setJointMotorControl2(0, 2, p.POSITION_CONTROL, targetPosition=pz + at[2])
+    else:
+      p.setJointMotorControl2(0, 0, p.POSITION_CONTROL, targetPosition=at[0])
+      p.setJointMotorControl2(0, 1, p.POSITION_CONTROL, targetPosition=at[1])
+      p.setJointMotorControl2(0, 2, p.POSITION_CONTROL, targetPosition=at[2])
     for i in range (stepsize):
         p.stepSimulation()
         if realtime:
           time.sleep(1./240.)
     return
+  
+  def get_jointstate(self,):
+    """
+    get the joint state of the gripper
+    """
+    px, vx, fx, tx = p.getJointState(0, 0)
+    py, vy, fy, ty = p.getJointState(0, 1)
+    pz, vz, fz, tz = p.getJointState(0, 2)
+    return np.array([px, py, pz])
   
   def apply_suction(self, 
                        body_id:int,
@@ -166,7 +179,7 @@ class CartesianGripper(object):
 
 
 if __name__ == '__main__':
-  env = CartesianGripper(use_debug_camera=True,
+  env = CartesianGripperEnv(use_debug_camera=True,
                         use_gui=True)
   env.setup_camera()
   for i in range(1000):
