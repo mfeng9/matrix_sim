@@ -174,6 +174,7 @@ class CartesianGripperEnv(object):
                        ):
     """
     apply external force from the center of the body to the center of the end effector surface
+    TODO: added additional contraints on the DOF and use inverse dynamics for better stabiliy
     """
     p.applyExternalForce(body_id, linkIndex, forceObj, posObj, flags)
 
